@@ -8,6 +8,7 @@ packages = [{include = "aces"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+requests = "^2.31.0"
 
 
 [build-system]
