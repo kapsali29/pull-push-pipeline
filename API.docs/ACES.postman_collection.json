@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "03a92029-f0b5-4703-9366-bdc8f10a7eba",
+		"name": "ACES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "490945",
+		"_collection_link": "https://crimson-water-64454.postman.co/workspace/New-Team-Workspace~5e81ed17-7383-4d29-b461-479e5b713054/collection/490945-03a92029-f0b5-4703-9366-bdc8f10a7eba?action=share&source=collection_link&creator=490945"
+	},
+	"item": [
+		{
+			"name": "Orion",
+			"item": [
+				{
+					"name": "Orion - Get Version",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/"
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/version",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Filter idPattern",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"disabled": true
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities?idPattern=^Room[1-3]",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities"
+							],
+							"query": [
+								{
+									"key": "idPattern",
+									"value": "^Room[1-3]"
+								}
+							]
+						},
+						"description": "This example returns the data of all `Store` entities within the context data"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Filter by attribute value",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"disabled": true
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities?q=temperature>22",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "temperature>22"
+								}
+							]
+						},
+						"description": "This example returns the data of all `Store` entities within the context data"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Filter by Entity type Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"disabled": true
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities?type=Room",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Room"
+								}
+							]
+						},
+						"description": "This example returns the data of all `Store` entities within the context data"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - List All Entities Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "openiot",
+								"disabled": true
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						},
+						"description": "This example returns the data of all `Store` entities within the context data"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Create Entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"Room2\",\n  \"type\": \"Room\",\n  \"temperature\": {\n    \"value\": 21,\n    \"type\": \"Float\"\n  },\n  \"pressure\": {\n    \"value\": 711,\n    \"type\": \"Integer\"\n  }\n}"
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get Entity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Update Entity",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"temperature\": {\n    \"value\": 26.5,\n    \"type\": \"Float\"\n  },\n  \"pressure\": {\n    \"value\": 763,\n    \"type\": \"Float\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1/attrs",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1",
+								"attrs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get Entity Keyvalues",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1?options=keyValues",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1"
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "keyValues"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get Entity Attrs Values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1?options=values&attrs=pressure,temperature",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1"
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "values"
+								},
+								{
+									"key": "attrs",
+									"value": "pressure,temperature"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get Entity Single Attribute value",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1/attrs/temperature/value",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1",
+								"attrs",
+								"temperature",
+								"value"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Update single entity",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "28.5",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/entities/Room1/attrs/temperature/value",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								"Room1",
+								"attrs",
+								"temperature",
+								"value"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get All Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/types",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get All Types Only values",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{orion}}/v2/types?options=values",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"types"
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "values"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Batch Creation of Entities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionType\": \"append\",\n  \"entities\": [\n    {\n      \"type\": \"Room\",\n      \"id\": \"Room3\",\n      \"temperature\": {\n        \"value\": 21.2,\n        \"type\": \"Float\"\n      },\n      \"pressure\": {\n        \"value\": 722,\n        \"type\": \"Integer\"\n      }\n    },\n    {\n      \"type\": \"Room\",\n      \"id\": \"Room4\",\n      \"temperature\": {\n        \"value\": 31.8,\n        \"type\": \"Float\"\n      },\n      \"pressure\": {\n        \"value\": 712,\n        \"type\": \"Integer\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Batch Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionType\": \"update\",\n  \"entities\": [\n    {\n      \"type\": \"Room\",\n      \"id\": \"Room3\",\n      \"temperature\": {\n        \"value\": 29.9,\n        \"type\": \"Float\"\n      }\n    },\n    {\n      \"type\": \"Room\",\n      \"id\": \"Room4\",\n      \"pressure\": {\n        \"value\": 709,\n        \"type\": \"Integer\"\n      }\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/op/update",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"op",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Batch Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"entities\": [\n    {\n      \"idPattern\": \".*\",\n      \"type\": \"Room\"\n    },\n    {\n      \"id\": \".*\",\n      \"type\": \"Car\"\n    }\n  ],\n  \"attrs\": [\n    \"temperature\",\n    \"pressure\"\n  ],\n  \"expression\": {\n    \"q\": \"temperature>19\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/op/query",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"op",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

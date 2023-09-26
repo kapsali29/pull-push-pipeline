@@ -1,0 +1,39 @@
+version: '3.3'
+
+volumes:
+  mongodb-data:
+
+networks:
+  aces-perception:
+    name: aces-perception
+
+services:
+  mongodb:
+    image: mongo:4.4
+    hostname: ${MONGO_HOSTNAME}
+    container_name: ${MONGO_HOSTNAME}
+    networks:
+      - aces-perception
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=admin
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb-data:/data/db
+
+  orion-cb:
+    image: fiware/orion:3.10.1
+    container_name: ${ORION_HOSTNAME}
+    hostname: ${ORION_HOSTNAME}
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    networks:
+      - aces-perception
+    ports:
+      - "1026:1026"
+    command: -dbhost ${MONGO_HOSTNAME} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -logLevel WARN
