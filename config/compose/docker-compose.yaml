@@ -2,6 +2,7 @@ version: '3.3'
 
 volumes:
   mongodb-data:
+  cratedb-data:
 
 networks:
   aces-perception:
@@ -37,3 +38,33 @@ services:
     ports:
       - "1026:1026"
     command: -dbhost ${MONGO_HOSTNAME} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -logLevel WARN
+
+  crate-db:
+    container_name: ${CRATE_HOSTNAME}
+    hostname: ${CRATE_HOSTNAME}
+    image: crate:4.5.1
+    command: crate -Cauth.host_based.enabled=false -Ccluster.name=democluster -Chttp.cors.enabled=true -Chttp.cors.allow-origin="*"
+    volumes:
+      - cratedb-data:/data
+    ports:
+      - "4200:4200"
+      - "4300:4300"
+    networks:
+      - aces-perception
+
+  quantumleap:
+    hostname: ${QLEAP_HOSTNAME}
+    container_name: ${QLEAP_HOSTNAME}
+    image: orchestracities/quantumleap:0.8.3
+    depends_on:
+      - crate-db
+    networks:
+      - aces-perception
+    ports:
+      - "8668:8668"
+    environment:
+      - QL_DEFAULT_DB=${CRATE_HOSTNAME}
+      - CRATE_HOST=${CRATE_HOSTNAME}
+      - USE_GEOCODING=False
+      - CACHE_QUERIES=False
+      - LOGLEVEL=DEBUG
