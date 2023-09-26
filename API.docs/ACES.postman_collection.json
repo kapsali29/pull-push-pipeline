@@ -193,7 +193,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"Room2\",\n  \"type\": \"Room\",\n  \"temperature\": {\n    \"value\": 21,\n    \"type\": \"Float\"\n  },\n  \"pressure\": {\n    \"value\": 711,\n    \"type\": \"Integer\"\n  }\n}"
+							"raw": "{\n  \"id\": \"Room9\",\n  \"type\": \"Room\",\n  \"temperature\": {\n    \"value\": 21,\n    \"type\": \"Float\"\n  },\n  \"pressure\": {\n    \"value\": 711,\n    \"type\": \"Integer\"\n  }\n}"
 						},
 						"url": {
 							"raw": "http://{{orion}}/v2/entities/",
@@ -497,6 +497,91 @@
 								"v2",
 								"op",
 								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://{{orion}}/v2/subscriptions/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \"description\": \"Notify QuantumLeap of changes to any entity.\",\n    \"subject\": {\n        \"entities\": [\n            {\n                \"idPattern\": \".*\"\n            }\n        ]\n    },\n    \"notification\": {\n        \"http\": {\n            \"url\": \"http://quantumleap:8668/v2/notify\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"subscriptions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Get Subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1026/v2/subscriptions",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "QL",
+			"item": [
+				{
+					"name": "QL - Create Orion Subscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \"description\": \"Notify QuantumLeap of changes to any entity.\",\n    \"subject\": {\n        \"entities\": [\n            {\n                \"idPattern\": \".*\"\n            }\n        ]\n    },\n    \"notification\": {\n        \"http\": {\n            \"url\": \"http://quantumleap:8668/v2/notify\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{orion}}/v2/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"{{orion}}"
+							],
+							"path": [
+								"v2",
+								"subscriptions",
+								""
 							]
 						}
 					},
