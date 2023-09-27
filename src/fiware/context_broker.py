@@ -1,14 +1,13 @@
 import json
 
-from fiware.http import Client
+import requests
 
 
-class OrionCB(Client):
+class OrionCB(object):
     def __init__(self,
                  orion_base_url,
                  ql_base_url
                  ):
-        super(OrionCB, self).__init__()
         self.orion_base_url = orion_base_url
         self.ql_base_url = ql_base_url
 
@@ -20,13 +19,15 @@ class OrionCB(Client):
         orion_cmd = {
             "description": description,
             "subject": {
-                "entities": [{
-                    "idPattern": id_pattern
-                }]
+                "entities": [
+                    {
+                        "idPattern": id_pattern
+                    }
+                ]
             },
             "notification": {
                 "http": {
-                    "url": self.ql_base_url
+                    "url": f"{self.ql_base_url}"
                 }
             }
         }
@@ -37,12 +38,10 @@ class OrionCB(Client):
             sub_cmd
     ):
         data = json.dumps(sub_cmd)
-        response = self.post(
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(
             url=f'{self.orion_base_url}/subscriptions/',
-            headers={
-                'Content-Type': 'application/json',
-                'Content-Length': str(len(data))
-            },
-            data=data
+            data=data,
+            headers=headers
         )
         return response
