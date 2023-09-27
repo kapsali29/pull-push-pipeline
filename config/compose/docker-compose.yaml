@@ -37,7 +37,7 @@ services:
       - aces-perception
     ports:
       - "1026:1026"
-    command: -dbhost ${MONGO_HOSTNAME} -dbuser ${MONGO_INITDB_ROOT_USERNAME} -dbpwd ${MONGO_INITDB_ROOT_PASSWORD} -logLevel WARN
+    command: -dbhost mongodb -dbuser -logLevel WARN
 
   crate-db:
     container_name: ${CRATE_HOSTNAME}

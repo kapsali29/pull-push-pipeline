@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: orioncb
+  name: orioncb
+spec:
+  ports:
+  - name: orioncb
+    port: 1026
+    protocol: TCP
+    targetPort: 1026
+  selector:
+    app: orioncb
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: orioncb
+  name: orioncb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orioncb
+  template:
+    metadata:
+      labels:
+        app: orioncb
+    spec:
+      containers:
+        - args:
+            - -dbhost
+            - mongodb
+            - -logLevel
+            - WARN
+          image: fiware/orion:3.10.1
+          name: orion-cb
+          ports:
+            - containerPort: 1026
+              hostPort: 1026
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}
