@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: crate-db
+  name: crate-db
+spec:
+  ports:
+    - name: "4200"
+      port: 4200
+      targetPort: 4200
+    - name: "4300"
+      port: 4300
+      targetPort: 4300
+  selector:
+    app: crate-db
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: crate-db
+  name: crate-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crate-db
+  template:
+    metadata:
+      labels:
+        app: crate-db
+    spec:
+      containers:
+        - args:
+            - crate
+            - -Cauth.host_based.enabled=false
+            - -Ccluster.name=democluster
+            - -Chttp.cors.enabled=true
+            - -Chttp.cors.allow-origin=*
+          image: crate:4.5.1
+          name: crate-db
+          ports:
+            - containerPort: 4200
+              hostPort: 4200
+              protocol: TCP
+            - containerPort: 4300
+              hostPort: 4300
+              protocol: TCP
+          resources: { }
+          volumeMounts:
+            - mountPath: /data
+              name: cratedb-data
+      restartPolicy: Always
+      volumes:
+        - name: cratedb-data
+          persistentVolumeClaim:
+            claimName: crate-db-pvc
+status: { }
