@@ -1,0 +1,9 @@
+worker:
+  image:
+    prefectTag: 2.13.2-python3.10-kubernetes
+  apiConfig: "server"
+  config:
+    workPool: "sample"
+  serverApiConfig:
+    apiUrl: "http://prefect-server.default.svc.cluster.local:4200/api"
+
