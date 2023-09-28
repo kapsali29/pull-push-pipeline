@@ -1,5 +1,5 @@
 import settings
-from fiware.context_broker import OrionCB
+from .fiware.context_broker import OrionCB
 
 orion_cb = OrionCB(
     orion_base_url=f'http://{settings.ORION_EXT_HOST}:{settings.ORION_PORT}/v2',
