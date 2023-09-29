@@ -10,6 +10,7 @@ packages = [{include = "aces"}]
 python = "^3.11"
 requests = "^2.31.0"
 prefect = "^2.13.2"
+s3fs = "^2023.9.2"
 
 
 [build-system]

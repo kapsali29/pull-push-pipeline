@@ -18,17 +18,6 @@ Then it is needed to configure the prefect profile in order to build the deploym
 ## Install MinIO (TODO)
 
 ```shell
-    # example using s3 to store flow code
-    push:
-      - prefect_aws.deployments.steps.push_to_s3:
-          bucket: minio-flows
-          folder: param
-          client_parameters:
-            endpoint_url: http://localhost:9000
-    pull:
-      - prefect_aws.deployments.steps.pull_from_s3:
-          bucket: minio-flows
-          folder: param
-          client_parameters:
-            endpoint_url: http://minio:9000
+`prefect deployment build flows/simple_flow.py:child -n 'child' -ib kubernetes-job/prod -sb 'remote-file-system/minio'`
+`prefect deployment apply child-deployment.yaml`
 ```
