@@ -10,6 +10,6 @@ kubectl minio tenant create aces \
          --disable-tls
 
 #
-  Username: ZUWQBKP0XJ5AA3310298
-  Password: nYMDobmET2LNveuRMxBerbZJIywQllBuKUTHhXLu
+  Username: JEIZT100R234NO8Q9CF0
+  Password: vVW4E8agAQ8twncmrKJaYELn2VBJZoUKqqwSmBF5
 #

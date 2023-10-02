@@ -2,10 +2,10 @@ from prefect.infrastructure import KubernetesJob
 from prefect.filesystems import RemoteFileSystem
 
 MINIO_SETTINGS = {
-    'key': 'ZUWQBKP0XJ5AA3310298',
-    'secret': 'nYMDobmET2LNveuRMxBerbZJIywQllBuKUTHhXLu',
-    'port': 8000,
-    'host': 'localhost',
+    'key': 'JEIZT100R234NO8Q9CF0',
+    'secret': 'vVW4E8agAQ8twncmrKJaYELn2VBJZoUKqqwSmBF5',
+    'port': 80,
+    'host': 'minio.minio-operator.svc.cluster.local',
     'prefect-bucket': 'prefect-data'
 }
 
