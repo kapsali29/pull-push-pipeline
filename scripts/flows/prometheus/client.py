@@ -27,7 +27,7 @@ class PrometheusClient(object):
             self
     ):
         response = self.http(
-            url=f'{self.http_protocol}://{self.prometheus_base_url}/api/v1/labels/'
+            url=f'{self.http_protocol}://{self.prometheus_base_url}/api/v1/labels'
         )
         return response
 
