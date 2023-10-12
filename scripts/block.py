@@ -2,8 +2,8 @@ from prefect.infrastructure import KubernetesJob
 from prefect.filesystems import RemoteFileSystem
 
 MINIO_SETTINGS = {
-    'key': 'YKZZDGSA064XEMUW8FAZ',
-    'secret': '8bORSc9SvWLGiqW5KgyLAdXUx6EE4nrBy0n5N61A',
+    'key': 'ZAOPUBB550HDJBUJUUCN',
+    'secret': 'RJOxNdQrXGhTtt7Gc4X3sC2j6YIWED8ELLJhSRsL',
     'port': 80,
     'host': 'minio.minio-operator.svc.cluster.local',
     'prefect-bucket': 'prefect-data'
@@ -12,7 +12,7 @@ MINIO_SETTINGS = {
 k8s = KubernetesJob(
     image="prefecthq/prefect:2.13.2-python3.10",
     image_pull_policy="Always",
-    env={"EXTRA_PIP_PACKAGES": "s3fs requests"},
+    env={"EXTRA_PIP_PACKAGES": "s3fs requests confluent_kafka"},
 )
 k8s.save("prod", overwrite=True)
 

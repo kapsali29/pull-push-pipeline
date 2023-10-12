@@ -1,0 +1,80 @@
+###
+### A complete description of a Prefect Deployment for flow 'fetch-metrics-subset'
+###
+name: fetch_metrics_subset
+description: null
+version: 5041da5ec652dcb6e0970e380ee8e184
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: sample
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: fetch-metrics-subset
+manifest_path: null
+infrastructure:
+  type: kubernetes-job
+  env:
+    EXTRA_PIP_PACKAGES: s3fs requests confluent_kafka
+  labels: {}
+  name: null
+  command: null
+  image: prefecthq/prefect:2.13.2-python3.10
+  namespace: default
+  service_account_name: null
+  image_pull_policy: Always
+  cluster_config: null
+  job:
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      labels: {}
+    spec:
+      template:
+        spec:
+          parallelism: 1
+          completions: 1
+          restartPolicy: Never
+          containers:
+          - name: prefect-job
+            env: []
+  customizations: []
+  job_watch_timeout_seconds: null
+  pod_watch_timeout_seconds: 60
+  stream_output: true
+  finished_job_ttl: null
+  _block_document_id: cc082f8a-8548-44af-b6bf-e332a8554d9d
+  _block_document_name: prod
+  _is_anonymous: false
+  block_type_slug: kubernetes-job
+  _block_type_slug: kubernetes-job
+storage:
+  basepath: s3://prefect-data/param
+  settings:
+    use_ssl: false
+    key: ZAOPUBB550HDJBUJUUCN
+    secret: RJOxNdQrXGhTtt7Gc4X3sC2j6YIWED8ELLJhSRsL
+    client_kwargs:
+      endpoint_url: http://minio.minio-operator.svc.cluster.local:80
+  _block_document_id: 10d1b166-c10a-4b58-9797-7eaeb5ce23cb
+  _block_document_name: minio
+  _is_anonymous: false
+  block_type_slug: remote-file-system
+  _block_type_slug: remote-file-system
+path: ''
+entrypoint: flows/fetch_metrics_tiny_set.py:fetch_metrics_subset
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
+timestamp: '2023-10-12T14:55:40.226509+00:00'
+triggers: []
+enforce_parameter_schema: null
