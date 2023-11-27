@@ -9,7 +9,7 @@ packages = [{include = "aces"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 requests = "^2.31.0"
-prefect = "^2.13.2"
+prefect = "^2.14.3"
 s3fs = "^2023.9.2"
 confluent-kafka = "^2.2.0"
 
